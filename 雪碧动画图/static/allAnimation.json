@@ -1,0 +1,25 @@
+{
+  "ic_voice": [
+    {
+      "name": "ic_voice_01",
+      "x": 0,
+      "y": 0,
+      "width": 60,
+      "height": 60
+    },
+    {
+      "name": "ic_voice_02",
+      "x": 0,
+      "y": 61,
+      "width": 60,
+      "height": 60
+    },
+    {
+      "name": "ic_voice_03",
+      "x": 61,
+      "y": 0,
+      "width": 60,
+      "height": 60
+    }
+  ]
+}
