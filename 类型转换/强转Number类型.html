@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>强转Number类型</title>
+</head>
+<body>
+    <script>
+  
+    // 基本数据类型
+    console.log('Number(1)',Number(1))
+    console.log('Number(true)',Number(true)) // 1 
+    console.log('Number(false)',Number(false)) // 0
+    console.log('Number(undefined)',Number(undefined)) // NaN
+    console.log('Number(null)',Number(null)) // 0
+    console.log('Number(空字符串)',Number('')) // 123
+    console.log('Number(字符串123)',Number('123')) // 123
+    console.log('Number(asdf)',Number('asdf')) // NaN
+
+    
+    // 引用数据类型
+    console.log('Number([])',Number([]))
+    // "" => 0
+    console.log('Number([4])',Number([4]))
+    // 4 => 4
+    console.log('Number([1,2])',Number([1,2]))
+    // '1,2' NaN
+    console.log('Number([a])',Number(['a']))
+    // NaN
+    console.log('Number({})',Number({}))
+    // NaN
+    console.log('Number({a:1})',Number({a:1}))
+    // NaN
+    </script>
+</body>
+</html>
