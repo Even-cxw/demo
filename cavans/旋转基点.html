@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>旋转基点</title>
+</head>
+
+<body>
+	<canvas width="600" height="600" id="canvas"></canvas>
+	<script>
+
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		ctx.fillRect(0, 0, 600, 600);
+		ctx.save(); // 将当前状态放入栈中
+
+		// 代码一 先移动在旋转：相对于translate点
+		// ctx.fillStyle = 'red';
+		// ctx.translate(20, 20);
+		// ctx.rotate(20 * Math.PI / 180);
+		// ctx.fillRect(0, 0, 50, 50);
+
+
+		// 代码二 先旋转在移动：相对于旋转之前的点
+		// ctx.restore(); // 恢复到最近的保存状态的方法
+		// ctx.fillStyle = 'green';
+		// ctx.rotate(20 * Math.PI / 180);
+		// ctx.translate(20, 20);
+		// ctx.fillRect(0, 0, 50, 50);
+
+		// 代码三 中心点旋转
+		ctx.restore(); // 恢复到最近的保存状态的方法
+		ctx.translate(125, 125);
+		ctx.fillStyle = 'green';
+		ctx.rotate(60 * Math.PI / 180);
+		ctx.translate(-25, -25);
+		ctx.fillRect(0, 0, 50, 50);
+
+	</script>
+</body>
+
+</html>
