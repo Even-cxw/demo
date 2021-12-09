@@ -31,6 +31,6 @@ gulp.task('script', function() {
 })
 
 gulp.task('auto', function () {
-    gulp.watch('js/*.js', ['script'])
+    gulp.watch('src/ES6/*.js', ['script'])
 })
 gulp.task('default', ['webserver', 'script', 'auto'])

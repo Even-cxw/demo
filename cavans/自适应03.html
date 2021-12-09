@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>设置canvas-style</title>
+	<style>
+		html,
+		body {
+			height: 100vh;
+			width: 100vw;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas" height="550" width="550"></canvas>
+	<!-- <canvas id="canvas" style="width: 100%;height: 100%;"></canvas> -->
+
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = 'red';
+		ctx.fillRect(10, 10, 550, 550);
+		canvas.addEventListener('mousedown', function (e) {
+			ctx.save();
+			let loc = windowToCanvas(canvas, e)
+			// _clearCircle(loc)
+			_clearRect(loc)
+		})
+
+		function _clearCircle(loc) {
+			ctx.beginPath();
+			ctx.arc(loc.x, loc.y, 6, 0, Math.PI * 2, false);
+			ctx.clip();
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			ctx.restore();
+		}
+
+		function _clearRect(loc) {
+			ctx.clearRect(loc.x-3, loc.y-3, 6, 6);
+		}
+
+		function windowToCanvas(canvas, e) {
+			let bbox = canvas.getBoundingClientRect(),
+				x = IsPC() ? e.clientX || event.clientX : e.changedTouches[0].clientX,
+				y = IsPC() ? e.clientY || event.clientY : e.changedTouches[0].clientY;
+			return {
+				x: x - bbox.left,
+				y: y - bbox.top
+			}
+		};
+
+		function IsPC() {
+			let userAgentInfo = navigator.userAgent,
+				flag = true,
+				Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+
+			for (let v = 0; v < Agents.length; v++) {
+				if (userAgentInfo.indexOf(Agents[v]) > 0) {
+					flag = false;
+					break;
+				}
+			}
+			return flag;
+		};
+
+	</script>
+</body>
+
+</html>

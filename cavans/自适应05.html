@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>自适应留白+内容适配</title>
+	<style>
+		html,
+		body {
+			height: 100vh;
+			width: 100vw;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.canvas-wrapper {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+
+		.Even {
+			height: 500px;
+			width: 500px;
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="canvas-wrapper">
+		<div class="Even">nihao woshi chenxuewei</div>
+		<canvas id="canvas"></canvas>
+	</div>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext("2d");
+		var designWidth =  800; // 设计图宽
+		var designHeight = 600; // 设计图高
+		var whRate = designWidth/designHeight; // 设计图比率
+		var cwidth,cheight; // canvas真实宽高
+		resizeCanvas(); // 初始化canvas
+		window.addEventListener('resize', function () {
+			resizeCanvas();
+		})
+		function resizeCanvas() {  
+			// 获取屏幕宽高
+			// 谷歌浏览器 document.documentElement.clientWidth
+			// ie浏览器 document.body.clientHeight
+			var clientWidth = document.body.clientWidth || document.documentElement.clientWidth;
+			var clientHeight = document.body.clientHeight || document.documentElement.clientHeight;
+			console.log(clientWidth, clientHeight)
+			// 设计图纸800/600。
+			if(clientWidth - clientHeight > 0) {
+				// 宽大于高， 以高度为基准
+				cheight = clientHeight
+				cwidth = cheight*whRate
+			} else {
+				cwidth = clientWidth
+				cheight = cwidth/whRate
+			}
+			canvas.width = cwidth;
+			canvas.height = cheight;
+			ctx.fillStyle = 'black';
+			ctx.fillRect(0, 0, cwidth, cwidth);
+
+			ctx.fillStyle = 'red';
+			console.log('calcX(50)', calcX(50))
+			console.log('calcY(50)', calcY(50));
+			ctx.fillRect(calcX(50), calcY(50), calcX(50), calcY(50));
+		}
+
+		function calcX(X) {
+			return X/designWidth*cwidth
+		}
+
+		function calcY(Y) {
+			return Y/designHeight*cheight
+		}
+	</script>
+</body>
+
+</html>

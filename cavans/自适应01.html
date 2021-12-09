@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>适配不重绘</title>
+	<style>
+		html,body {
+			height: 100vh;
+			width: 100vw;
+		}
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas"></canvas>
+	<script>
+		var clientWidth,clientHeight; // 屏幕宽高
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext("2d");
+		resizeCanvas();
+		window.addEventListener('resize', function() {
+			resizeCanvas();
+		})
+		function resizeCanvas() {
+			// 获取屏幕宽高
+			// 谷歌浏览器 document.documentElement.clientWidth
+			// ie浏览器 document.body.clientHeight
+			clientWidth = document.body.clientWidth || document.documentElement.clientWidth;
+			clientHeight = document.body.clientHeight || document.documentElement.clientHeight;
+			canvas.width = clientWidth;
+			canvas.height = clientHeight;
+			console.log(clientWidth,clientHeight)
+		}
+		ctx.fillStyle = 'green';
+		ctx.fillRect(20, 10, clientWidth/10, clientHeight/10);
+	
+
+	</script>
+</body>
+
+</html>
