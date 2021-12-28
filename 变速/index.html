@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>简单速度测试demo</title>
+</head>
+
+<body>
+	<div id="btn">测试btn</div>
+	<script src='./demo02.js'></script>
+	<script>
+		new AnimationFrame({
+			mainFun:function() {console.log('我是主要逻辑函数')},
+			countCallback: function(count){
+				if (count == 10) {
+					console.log('开始加速')
+					this.quicken()
+				} else if (count == 20) {
+					console.log('开始减速')
+					this.slow()
+				} else if (count == 25) {
+					console.log('暂停')
+					this.stop();
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>
